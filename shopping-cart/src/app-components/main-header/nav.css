@@ -1,0 +1,42 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    flex: 1;
+}
+
+.nav-container>* {
+    display: flex;
+    gap: 1em;
+    padding-right: 1em;
+}
+
+.right {
+    font-size: 1.25em;
+
+}
+
+.right>* {
+    border: 0.1em solid darkgrey;
+    padding: 0.2em 1em;
+}
+
+
+.left>*{
+    border-bottom: none;
+    font-size: large;
+    transition: border-bottom 0.5s linear;
+    -moz-transition: border-bottom 0.5s linear;    /* FF3.7+ */
+    -o-transition: border-bottom 0.5s linear;      /* Opera 10.5 */
+    -webkit-transition: border-bottom 0.5s linear; /* Saf3.2+, Chrome */
+}
+
+.left>*:hover {
+    border-bottom: 0.1em solid darkgoldenrod;
+}
+
+.right>*:hover {
+    color: black;
+    background-image: linear-gradient(to bottom right, rgb(66, 61, 61), white);
+}
