@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './app-components/main-header/Header';
+import Content from './app-components/main-content/Content';
 import './styles/normalize.css'
 
 const App = () => {
+
+    const mainStyle = {
+        backgroundColor: 'black',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    }
     return (
-        <div className='main'>
+        <div className='main' style={mainStyle}>
             <Header />
-            <div className='content'>
-                <div id='trailer'></div>
-                <div id='news'></div>
-                <div id='about'></div>
-                <div id='shop'></div>
-                <div id='newsletter'></div>
-            </div>
+            <Content />
             <div className='footer'>
                 <div id='game-title'></div>
                 <div className='publisher-info'>

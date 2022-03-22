@@ -6,20 +6,27 @@ import scpimg from './scpimg.jpg'
 const Header = () => {
 
     const headerStyle = {
+        // position: 'fixed',
+        backgroundColor: 'black',
+        color: 'white',
+        margin: 0,
+        fontFamily: 'ITC Bauhaus',
+        width: '100%',
+        position: 'fixed',
+        zIndex: 1,
+    }
+    const titleStyle = {
         margin : 0,
         display: 'flex',
         alignItems: 'center',
     }
 
-    const titleStyle = {
-        margin: 0,
-        backgroundColor: 'black',
-        color: 'white',
+    const titleContainerStyle = {
         display: 'flex',
-        fontFamily: 'ITC Bauhaus',
         padding: '0.2em',
         flexWrap: 'wrap',
         gap: '2em',
+        position: 'relative',
     }
 
     const logoStyle = {
@@ -27,9 +34,9 @@ const Header = () => {
     }
  
     return (
-        <div className="Header">
-            <div className="title-container" style={titleStyle}>
-                <h1 id="title" style={headerStyle}>
+        <div className="Header" style={headerStyle}>
+            <div className="title-container" style={titleContainerStyle}>
+                <h1 id="title" style={titleStyle}>
                     <img src={scpimg} alt="scp" style={logoStyle}/>
                     <span id="name">SCP</span>
                 </h1>
