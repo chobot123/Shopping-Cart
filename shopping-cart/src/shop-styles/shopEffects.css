@@ -1,0 +1,13 @@
+#cart-button:hover {
+    font-size: larger;
+}
+
+#home,
+#contact{
+    border-bottom: none;
+}
+
+#home:hover,
+#contact:hover {
+    border-bottom: 0.01em solid darkgoldenrod;
+}

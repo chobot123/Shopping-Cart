@@ -2,6 +2,7 @@ import React from "react";
 import '../../styles/fonts.css'
 import './nav.css'
 import scpimg from './scpimg.jpg'
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -32,7 +33,12 @@ const Header = () => {
     const logoStyle = {
         height: '1.7em',
     }
- 
+    
+    const navStyle = {
+        color: 'white',
+        textDecoration: 'none',
+    }
+
     return (
         <div className="Header" style={headerStyle}>
             <div className="title-container" style={titleContainerStyle}>
@@ -44,7 +50,9 @@ const Header = () => {
                     <div className="left">
                         <nav>News</nav>
                         <nav>About</nav>
-                        <nav>Shop</nav>
+                        <nav>
+                            <Link to='/Shop' style={navStyle}>Shop</Link>
+                        </nav>
                     </div>
                     <div className="right">
                         <nav>Play Game</nav>

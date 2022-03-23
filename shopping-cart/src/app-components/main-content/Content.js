@@ -4,7 +4,6 @@ import Trailer from "./components/Trailer";
 import About from "./components/About";
 import Catalog from "./components/Catalog";
 import Info from "./components/Info";
-import ShopPreview from "./components/ShopPreview";
 
 const Content = () => {
 
@@ -27,7 +26,6 @@ const Content = () => {
                 <Catalog />
                 <Info />
             </div>
-            <ShopPreview />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import catalogImg from "./media/armory.jpeg" //https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fcollections%2F4622982%2Farmy&psig=AOvVaw1PbwL5fDDHg2FXxqR2jdCG&ust=1647983547383000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCr9qGP2PYCFQAAAAAdAAAAABAD
 import './flicker.css'
+import { Link } from "react-router-dom";
 
 const Catalog = () => {
 
@@ -31,6 +32,11 @@ const Catalog = () => {
         fontFamily: `'Special Elite', cursive`,
     }
 
+    const navStyle = {
+        color: 'white',
+        textDecoration: 'none',
+    }
+
     const stopFlickerEffect = (e) => {
         e.target.style.animation = 'none';
     }
@@ -46,7 +52,8 @@ const Catalog = () => {
 
             <div className="text-container" style={textContainerStyle}>
                 <span id="title">Enter the Armory</span>
-                <nav id="learn-more" style={buttonStyle}>Learn More</nav>
+                <nav id="learn-more" style={buttonStyle}>
+                    <Link to="/Shop" style={navStyle}>Learn More</Link></nav>
             </div>
         </div>
     )
