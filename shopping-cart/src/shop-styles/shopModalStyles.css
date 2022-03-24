@@ -29,12 +29,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3em;
-    padding: 1em;
+    font-size: 3vw;
+    padding: 0.5em;
+    font-weight: bolder;
 }
+
 .modal-body {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: 1fr;
     padding: 5%;
     gap: 2em;
 }
@@ -48,13 +50,12 @@
 
 .modal-body>*{
     display: flex;
-    align-content: center;
     justify-content: space-between;
-    height: 10%;
 }
 
 .item-info {
     flex: 1;
+    align-self: center;
 }
 
 .info-wrapper {
@@ -62,7 +63,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: larger;
+    font-size: 1.5vw;
 }
 
 .counter-container {

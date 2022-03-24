@@ -45,14 +45,14 @@ const ShopModal = (props) => {
         Modal.defaultStyles.overlay.fontFamily = 'ITC Bauhaus';
     }, [])
 
-
     return (
         <div className="cart" style={cartStyle}>
             <div id="itemCount" style={itemCountStyle}>{props.itemCount}</div>
             <button id="cart-button" style={cartButtonStyle} onClick={setModalOpenToTrue}>
                 <span id="cart-icon">&#128722;</span>
             </button>
-            <Modal isOpen={modalIsOpen} className="modal">
+            <Modal isOpen={modalIsOpen} className="modal" onRequestClose={(e) => {e.stopPropagation(); setModalIsOpen(false)}} 
+            shouldCloseOnOverlayClick={true}>
                 <div className="modal-header">
                     <span id="title">Checkout List</span>
                 </div>
