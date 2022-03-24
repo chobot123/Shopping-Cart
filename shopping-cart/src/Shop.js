@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import uniqid from "uniqid";
@@ -10,9 +10,73 @@ import darkestNight from "./shop-imgs/darkestNight.jpeg"
 import './styles/fonts.css'
 import './shop-styles/shopEffects.css'
 import './app-components/main-header/nav.css'
+import ShopModal from "./ShopModal";
 
 const Shop = () => {
 
+    const shopStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+    }
+
+    const titleStyle = {
+        display: 'flex',
+        fontSize: '2.5em',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '1.5em',
+    }
+
+    const headerStyle = {
+        display: 'flex',
+        color: 'white',
+        backgroundColor: 'black',
+        padding: '0.5em 10%',
+        fontFamily: `'Special Elite', cursive`,
+        fontSize: '2em',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+
+    const itemContainerStyle = {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        gap: '1em',
+        flexWrap: 'wrap',
+        padding: '10%',
+    }
+
+    const navStyle = {
+        color: 'white',
+        textDecoration: 'none',
+        fontSize: '0.5em',
+    }
+
+    const imgStyle = {
+        height: '20em',
+        width: '20em',
+    }
+
+    const itemStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '2em',
+        border: '0.2em solid black',
+        fontFamily: 'ITC Bauhaus',
+        fontSize: '1.25em'
+    }
+
+    const buyButtonStyle = {
+        margin: '0.5em',
+        backgroundColor: 'black',
+        padding: '0.25em',
+        borderRadius: '10px',
+        color: 'white',
+    }
+
+    //------------------------------------------//
 
     const [items, setItems] = useState([
 
@@ -82,94 +146,35 @@ const Shop = () => {
     ]);
 
     const [itemCount, setItemCount] = useState(0);
+    const [totalCost, setTotalCost] = useState(0);
 
-    const shopStyle = {
-        display: 'flex',
-        flexDirection: 'column',
+    const updateItemQuantity = (item, incrementer) => {
+        (incrementer) ? item.quantity += 1 :
+                        item.quantity -= 1;
     }
 
-    const titleStyle = {
-        display: 'flex',
-        fontSize: '2.5em',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '1.5em',
+    const updateTotalCost = (item, incrementer) => {
+        (incrementer) ? setTotalCost(Math.round((totalCost + item.price) * 100)/100) :
+                        setTotalCost(Math.round((totalCost - item.price) * 100)/100);
+    }
+    
+    const updateTotalItemCount = (incrementer) => {
+        if(incrementer) {
+            setItemCount(itemCount + 1);
+        }
+        else {setItemCount(itemCount - 1);}
     }
 
-    const headerStyle = {
-        display: 'flex',
-        color: 'white',
-        backgroundColor: 'black',
-        padding: '0.5em 10%',
-        fontFamily: `'Special Elite', cursive`,
-        fontSize: '2em',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    }
-
-    const itemContainerStyle = {
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        gap: '1em',
-        flexWrap: 'wrap',
-        padding: '10%',
-    }
-
-    const navStyle = {
-        color: 'white',
-        textDecoration: 'none',
-        fontSize: '0.5em',
-    }
-
-    const imgStyle = {
-        height: '20em',
-        width: '20em',
-    }
-
-    const itemStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '2em',
-        border: '0.2em solid black',
-        fontFamily: 'ITC Bauhaus',
-        fontSize: '1.25em'
-    }
-
-    const buyButtonStyle = {
-        margin: '0.5em',
-        backgroundColor: 'black',
-        padding: '0.25em',
-        borderRadius: '10px',
-        color: 'white',
-    }
-
-    const cartStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-    }
-
-    const cartButtonStyle = {
-        borderRadius: '50%',
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-    }
-
-    const itemCountStyle = {
-        position: 'absolute',
-        top: '60%',
-        left: '10%',
-        fontSize: '0.65em'
-    }
-
-    //------------------------------------------//
-
-    const addToCart = () => {
-        setItemCount(itemCount + 1);
+    const updateCart = (name, incrementer) => {
+        const temp = [...items].map((item) => {
+            if(item.name === name){
+                updateItemQuantity(item, incrementer);
+                updateTotalCost(item, incrementer);
+                updateTotalItemCount(incrementer);
+            }
+            return item;
+        });
+        setItems(temp);
     }
 
     return (
@@ -183,12 +188,11 @@ const Shop = () => {
                         <Link to="/" style={navStyle}>Contact</Link>
                     </nav>
                 </span>
-                <div className="cart" style={cartStyle}>
-                    <div id="itemCount" style={itemCountStyle}>{itemCount}</div>
-                    <button id="cart-button" style={cartButtonStyle}>
-                        <span id="cart-icon">&#128722;</span>
-                    </button>
-                </div>
+                <ShopModal items = {items}
+                           updateCart = {updateCart}
+                           itemCount = {itemCount}
+                           totalCost = {totalCost}
+                />
             </div>
             <div className="products">
             <div className="item-container" style={itemContainerStyle}>
@@ -198,7 +202,7 @@ const Shop = () => {
                             <img src={item.imgUrl} alt="gold scp logo" style={imgStyle}></img>
                             <span id='item-name'>{item.name}</span>
                             <span id='item-price'>{item.price}</span>
-                            <button id="buy-button" style={buyButtonStyle} onClick={() => addToCart()}>Add to Cart</button>
+                            <button id="buy-button" style={buyButtonStyle} onClick={() => updateCart(item.name, true)}>Add to Cart</button>
                         </div>
                     )
                 })}

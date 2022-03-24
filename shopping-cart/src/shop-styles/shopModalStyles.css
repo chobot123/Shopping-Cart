@@ -1,0 +1,95 @@
+.ReactModal__Content{
+    position: absolute;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    overflow: auto;
+    border-radius: 4px;
+    outline: currentcolor none medium;
+    height: 100%;
+    width: 25%;
+    right: 0%;
+    -webkit-animation-name: right;
+    -webkit-animation-duration: 0.4s;
+    animation-name: right;
+    animation-duration: 0.4s;
+}
+
+@keyframes right {
+    from {right: -100%; opacity: 0}
+    to {right: 0%; opacity: 1}
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    padding: 1em;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    gap: 2em;
+}
+
+.modal-body>*>img {
+    width:20%;
+    height: auto;
+    flex: 0.5;
+    border-radius: 10px;
+}
+
+.modal-body>*{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    height: 10%;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+.counter-container {
+    display: flex;
+    gap: 10%;
+    padding: 5%;
+    align-items: center;
+    font-size: 1em;
+    justify-content: center;
+}
+
+
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 1.5em;
+    padding: 10%
+}
+
+.modal-footer>#total-cost {
+    align-self: center;
+}
+
+.modal-footer>button {
+    background-color: black;
+    color: white;
+    padding: 5%;
+    border-radius: 10px;
+}
